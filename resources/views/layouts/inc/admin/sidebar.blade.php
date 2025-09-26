@@ -1,4 +1,5 @@
-<div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500">
+
+        <div class="flex flex-col items-center w-16 pb-4 overflow-auto border-r border-gray-800 text-gray-500">
                 <a class="flex items-center justify-center flex-shrink-0 w-full h-16" href="{{route('admin.dashboard')}}">
                     <svg class="w-8 h-8 stroke-current text-gray-300"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -58,14 +59,14 @@
                     <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="{{route('admin.category.index')}}">
                         <span class="leading-none">Categories</span>
                     </a>
-                    <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="{{route('admin.category.create')}}">
-                        <span class="leading-none">Add category</span>
-                    </a>
-                    <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="{{route('admin.product.index')}}">
+                    <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="{{route('admin.products')}}">
                         <span class="leading-none">Products</span>
                     </a>
-                    <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="{{route('admin.product.create')}}">
-                        <span class="leading-none">Add product</span>
+                    <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
+                        <span class="leading-none">Item 4</span>
+                    </a>
+                    <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
+                        <span class="leading-none">Item 5</span>
                     </a>
                     <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
                         <span class="leading-none">Item 6</span>
@@ -80,3 +81,13 @@
                 </div>
 
             </div>
+
+
+
+
+
+            
+
+
+
+            

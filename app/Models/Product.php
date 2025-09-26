@@ -8,10 +8,20 @@ class Product extends Model
 {
     protected $table = 'products';
 
-    protected $fillable = [
-        'name',
-        'price',
-        'description',
-        'stock',
-    ];
+    protected $guarded =[]; //hamgaalalt muutai
+
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    // protected $fillable = [
+
+    //     'category_id',
+    //     'name',
+    //     'price',
+    //     'description',
+    //     'stock',
+    //     'image',
+    // ];  //hamgaalalt sain
 }

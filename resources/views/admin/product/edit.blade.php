@@ -1,28 +1,47 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>edit</h1>
-    <form action="{{ route ('admin.product.update', ['id' => $product->id])}}" method="POST" class="card">
+    <h1>Edit</h1>
+    <form action="{{route('admin.product.update', ['id' => $product->id])}}" method="POST" class="card">
         @csrf
         @method('PUT')
-        <div class="field">
-            <label for="name">Name</label>
-            <input name="name" id="name" type="text" value="{{$product->name}}" required>
+        <div class="">
+            <label for="">Category</label>
+            <select name="category_id" id="">
+                <option value="">Songoh</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" @selected($product->category_id == $category->id)>{{$category->name}}</option>
+                @endforeach
+            </select>
         </div>
-        <div class="field">
-            <label for="Description">Description</label>
-            <textarea name="Description" id="Description"></textarea>
+        <div class="">
+            <label for="">Name</label>
+            <input type="text" name="name" id="" value="{{ $product->name }}">
         </div>
-        <div class="field">
-            <label for="Price">Price</label>
-            <input name="Price" id="Price" type="number" value="{{$product->price}}" required>
+        <div class="">
+            <label for="">Price</label>
+            <input type="text" name="price" value="{{ $product->price }}">
         </div>
-        <div class="field">
-            <label for="stock">stock</label>
-            <input name="stock" id="stock" type="number" value="{{$product->stock}}" required>
+        <div class="">
+            <label for="">Stock</label>
+            <input type="text" name="stock" value="{{ $product->stock }}">
         </div>
-        <div class="row">
-            <button type="submit" class="btn">Save</button>
+        <div class="">
+            <label for="">Description</label>
+            <textarea name="description" id="" rows="3">{{ $product->description }}</textarea>
         </div>
+        <div class="">
+            <label for="">Image</label>
+            @if($product->image)
+                <img src="{{ Storage::url($product->image)}}" class="w-24 h-24 rounded object-cover mb-2">
+            @endif
+            <input type="file" name="image" >
+        </div>
+
+        <button type="submit" class="btn1">Шинчлэх</button>
     </form>
+
+    <script>
+        
+    </script>
 @endsection

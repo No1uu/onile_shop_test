@@ -22,19 +22,22 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required' , 'string' , 'max:255'],
-            'description' => ['required' , 'string' , 'max:1000'],
-            'price' => ['required' , 'numeric' , 'min:0'],
-            'stock' => ['required' , 'integer' , 'min:0'],
+
+            'category_id' => 'required',
+            'name' => 'required',
+            'description' => 'nullable',
+            'price' => 'required',
+            'stock' => 'required',
+            'image' => 'nullable',
         ];
     }
     public function messages(): array
     {
         return [
-            'name.required' => 'Нэрээ оруулна уу',
-            'description.required' => 'Тайлбар оруулна уу',
-            'price.required' => 'Барааны үнэ оруулна уу',
-            'stock.required' => '0-ээс их тоо оруулна уу',
+            // 'name.required' => 'Нэрээ оруулна уу',
+            // 'description.required' => 'Тайлбар оруулна уу',
+            // 'price.required' => 'Барааны үнэ оруулна уу',
+            // 'stock.required' => '0-ээс их тоо оруулна уу',
         ];
     }
 

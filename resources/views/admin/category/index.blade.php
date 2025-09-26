@@ -1,12 +1,15 @@
 @extends('layouts.admin')
-
+<link rel="stylesheet" href="{{asset('assets/css/category.css')}}">
 @section('content')
-    <h1>Categories</h1>
-    @forelse ($categories as $category)
+    <header>
+        <h1>Categories</h1>
+        <a href="{{route('admin.category.create')}}">create</a>
+    </header>
+    @forelse ($categories as $Category)
         <div class="card">
-            <h3>{{ $category->name }}</h3> 
-            <a class="btn" style="border: 1px solid green; color:green; border-radius:6px" href="{{ route('admin.category.edit',['id' => $category->id]) }}">Edit category</a>
-            <a class="btn" style="border: 1px solid red; color:red; border-radius:6px" href="{{ route('admin.category.destroy',['id' => $category->id]) }}">Delete category</a>
+            <h3>{{ $Category->name }}</h3> 
+            <a class="btn" href="{{ route('admin.category.edit',['id' => $Category->id]) }}">Edit category</a>
+            <a class="btn" href="{{ route('admin.category.destroy',['id' => $Category->id]) }}">Delete category</a>
         </div>
     @empty 
         <p>Хоосон</p>

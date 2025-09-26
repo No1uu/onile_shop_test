@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
  
@@ -26,11 +27,12 @@ class CategoryController extends Controller
             'name' => ['required', 'string']
         ]);
         Category::create($validated);
-        return redirect()->route('admin.category.index');
+
+        return redirect()->route('admin.category.index')->with('success' ,'Категори амжилттай нэмэгдлээ.');
     }
     public function edit($id){
         $Category=Category::findOrFail($id);
-        return view('admin.category.edit', compact('category'));
+        return view('admin.category.edit', compact('Category'));
     }
     public function update(Request $request, $id){
         $validated = $request->validate([
@@ -46,6 +48,7 @@ class CategoryController extends Controller
 
     }
     public function destroy($id){
+
         $Category = Category::findOrFail($id);
 
         $Category->delete();

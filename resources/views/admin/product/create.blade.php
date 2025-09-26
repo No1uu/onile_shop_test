@@ -2,35 +2,38 @@
 
 @section('content')
     <h1>Create</h1>
-    <form action="{{route('admin.product.store')}}" method="POST" class="card">
+    <form action="{{route('admin.product.store')}}" method="POST" class="card" enctype="multipart/form-data">
         @csrf
-        <div class="field">
-            <label for="name">Name</label>
-            <input name="name" id="name" type="text" value ="{{ old('name') }}">
-            @error('name')
-                <div class="" style= "color:red; font-size:14px;"> {{ $message}}</div>
-            @enderror
+        <div class="">
+            <label for="">Category</label>
+            <select name="category_id" id="">
+                <option value="">Songoh</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{$category->name}}</option>
+                @endforeach
+            </select>
         </div>
-        <div class="field">
-            <label for="description">Description</label>
-            <textarea name="description" id="description">{{old('description')}}</textarea>
+        <div class="">
+            <label for="">Name</label>
+            <input type="text" name="name" id="">
         </div>
-        <div class="field">
-            <label for="price">price</label>
-            <input name="price" id="price" type="number" value ="{{ old('price') }}">
-            @error('price')
-                <div class="" style= "color:red; font-size:14px;"> {{ $message}}</div>
-            @enderror
+        <div class="">
+            <label for="">Price</label>
+            <input type="text" name="price">
         </div>
-        <div class="field">
-            <label for="stock">stock</label>
-            <input name="stock" id="stock" type="number" value ="{{ old('stock') }}">
-            @error('stock')
-                <div class="" style= "color:red; font-size:14px;"> {{ $message}}</div>
-            @enderror
+        <div class="">
+            <label for="">Stock</label>
+            <input type="text" name="stock">
         </div>
-        <div class="row">
-            <button type="submit" class="btn">Save</button>
+        <div class="">
+            <label for="">Description</label>
+            <textarea name="description" id="" rows="3"></textarea>
         </div>
+        <div class="">
+            <label for="">Image</label>
+            <input type="file" name="image">
+        </div>
+
+        <button type="submit" class="btn">Save</button>
     </form>
 @endsection
