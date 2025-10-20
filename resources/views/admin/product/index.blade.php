@@ -32,7 +32,7 @@
                                 <form action="{{ route('admin.product.destroy' , ['id' => $product->id]) }}" method="post" id="delete-form-{{$product->id}}">
                                 @csrf
                                 @method('delete')
-                                <button onclick="confirmDelete({{$product->id}})" type="button"; style="background-color:#fff; border:1px solid #000; cursor:pointer; border-radius:5px" class="btn">Устгах</button>
+                                <button onclick="confirmDelete({{$product->id}})"  style="background-color:#fff; border:1px solid #000; cursor:pointer; border-radius:5px" class="btn">Устгах</button>
                             </form>
                             </div>
                         </td>

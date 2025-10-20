@@ -5,13 +5,33 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\UserdetailController;
+use App\Http\Controllers\CommentController;
 
 
 
 
-Route::get('/', function () {
-    return view('home');
+
+
+
+
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/result', 'search')->name('search');
+    Route::get('/result/category', 'filter')->name('category.filter');
+    Route::get('/product/show/{id}', 'show')->name('product.show');
 });
+
+Route::controller(CartController::class)->group(function(){
+    Route::post('/cart/add', 'add')->name('cart.add');
+    Route::post('/cart/remove', 'remove')->name('cart.remove');
+    Route::post('/cart/clear', 'clear')->name('cart.clear');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -46,6 +66,13 @@ Route::prefix('/admin')->middleware(AdminMiddleware::class)->name('admin.')->gro
         Route::get('/products/{id}/show','show')->name('product.show');
         
     });
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/orders','index')->name('orders');
+        Route::get('/orders/show{id}','show')->name('order.show');
+        Route::post('/order/status/paid/{id}','paid')->name('order.markPaid');
+        Route::post('/order/status/unpaid/{id}','unpaid')->name('order.unpaid');
+
+    });
 });
 
 
@@ -53,10 +80,34 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::controller(CartController::class)->group(function(){
+        Route::get('/cart/show' , [CartController::class, 'show'])->name('cart.show');
+        Route::get('/cart/history' , [CartController::class, 'history'])->name('order.history');
+
+    });
+    
+
+
+    Route::controller(CheckoutController::class)->group (function(){
+        Route::get('/checkout/{id}', 'index')->name('user.checkout');
+        Route::get('/order/save', 'store')->name('order.save');
+    });
+
+    Route::controller(UserdetailController::class)->group(function(){
+        Route::get('/user/details' , 'index')->name('details.index');
+        Route::post('user/details' , 'store')->name('details.store');
+        Route::get('/user/details/create' , 'create')->name('details.create');
+        Route::get('/user/details/{id}' , 'show')->name('details.show');
+        Route::get('/user/details/{id}/edit' , 'edit')->name('details.edit');
+        Route::put('/user/details/{id}' , 'update')->name('details.update');
+    });
+    Route::controller(CommentController::class)->group (function(){
+        Route::post('/comment/store/{id}', 'store')->name('comment.store');
+    });
 });
 
-
-    
 
 
 require __DIR__.'/auth.php';
